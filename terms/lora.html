@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>低秩適應微調 · GenAI 詞彙卡</title>
+  <meta name="description" content="只訓練一小組額外參數，就能讓大模型學會新風格或新任務。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="lora">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>低秩適應微調</h1>
+      <p class="en">LoRA (Low-Rank Adaptation)</p>
+      <div class="meta">
+        <span class="badge">進階</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>LoRA 是一種微調方法：凍結原本的大模型，只在部分權重旁加上兩個很小的矩陣來訓練，以極低成本調整模型行為。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>與其重新裝潢整棟房子（全參數微調），LoRA 像是只換窗簾和燈罩：成本低、可以隨時拆下來，還能準備好幾套輪流換。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>原本的權重矩陣 W 保持不動（凍結）。</li>
+          <li>在旁邊加上兩個小矩陣 A（d×r）與 B（r×d），r 很小，例如 8 或 16。</li>
+          <li>訓練時只更新 A 和 B；實際使用的權重變成 W + B·A。</li>
+          <li>訓練完的 LoRA 檔案通常只有幾 MB 到幾百 MB，可以分享、疊加、切換。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>在圖像生成中，常用 LoRA 讓 Stable Diffusion 學會某種畫風，例如用 20–50 張自己的水彩作品訓練一個「我的水彩風」LoRA，生成時再以權重載入：</p>
+        <pre><code>&lt;lora:my_watercolor:0.8&gt; a small harbor town at sunset</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>LoRA 只能用在圖片模型。 <strong>其實：</strong>LoRA 最早是為語言模型提出的，現在文字、圖像模型都廣泛使用。</li>
+          <li><strong>誤解：</strong>LoRA 的效果一定比全參數微調差。 <strong>其實：</strong>很多任務上差距很小，而且大幅省下顯示卡記憶體與儲存空間。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

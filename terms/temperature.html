@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>溫度 · GenAI 詞彙卡</title>
+  <meta name="description" content="控制生成時的隨機程度：低溫穩定保守，高溫多變有創意。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="temperature">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>溫度</h1>
+      <p class="en">Temperature (Sampling)</p>
+      <div class="meta">
+        <span class="badge">入門</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Temperature 是生成文字時調整機率分佈「尖銳或平坦」的參數，用來控制輸出的隨機性與多樣性。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>像點餐：溫度低時你永遠點最愛的那道菜；溫度高時你願意試試菜單上平常不會點的東西，可能有驚喜，也可能踩雷。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>模型對下一個 token 算出每個候選的分數（logits）。</li>
+          <li>把分數除以溫度 T，再做 softmax 得到機率。</li>
+          <li>T &lt; 1 讓高分更突出（更確定）；T &gt; 1 讓分佈更平均（更隨機）。</li>
+          <li>依機率抽出下一個 token，重複直到結束。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>同一個 prompt「幫我想一個咖啡店名字」：</p>
+        <pre><code>temperature = 0.2 → 「晨光咖啡」「晨光咖啡館」（每次都很像）
+temperature = 1.2 → 「月球背面的拿鐵」「慢半拍」「豆子在說話」</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>溫度越高，模型越聰明、越有創意。 <strong>其實：</strong>太高會開始胡言亂語；創意和品質要取得平衡。</li>
+          <li><strong>誤解：</strong>溫度 0 一定每次輸出都一模一樣。 <strong>其實：</strong>多數情況幾乎相同，但實作上的浮點誤差或平行運算仍可能造成些微差異。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

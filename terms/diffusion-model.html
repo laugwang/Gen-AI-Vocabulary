@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>擴散模型 · GenAI 詞彙卡</title>
+  <meta name="description" content="學會一步步把雜訊「去噪」成清晰圖片的生成模型。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="diffusion-model">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>擴散模型</h1>
+      <p class="en">Diffusion Model</p>
+      <div class="meta">
+        <span class="badge">進階</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Diffusion Model 先學習如何從加了雜訊的圖片中把雜訊去掉，生成時再從純雜訊出發，一步步去噪得到新圖片。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>像是看著一張被雪花雜訊蓋住的電視畫面，每次只擦掉一點點雜訊。擦了幾十次之後，畫面就清楚了，而且是一張新畫面。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>訓練時：把真實圖片逐步加上高斯雜訊，直到變成純雜訊（前向過程）。</li>
+          <li>訓練一個神經網路（常用 U-Net），讓它看著有雜訊的圖，預測加了什麼雜訊。</li>
+          <li>生成時：從隨機雜訊開始，反覆用網路預測並減去雜訊（反向過程），通常 20–50 步。</li>
+          <li>加入文字條件（text embedding + cross-attention），就能「依照描述」生成圖片。</li>
+          <li>Stable Diffusion 在壓縮後的潛在空間（latent）中做擴散，以節省運算。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>一個典型的文字生成圖片設定：</p>
+        <pre><code>prompt: "a cozy cafe on a rainy night, watercolor"
+steps: 30        # 去噪次數
+cfg_scale: 7     # 多聽 prompt 的程度
+seed: 42         # 固定起始雜訊 → 可重現</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>模型是把資料庫裡的圖片拼貼起來。 <strong>其實：</strong>模型學的是去噪的規律，生成時從隨機雜訊開始計算出新圖。</li>
+          <li><strong>誤解：</strong>步數越多圖一定越好。 <strong>其實：</strong>超過一定步數後品質幾乎不再提升，只會變慢。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

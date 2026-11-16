@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>注意力機制 · GenAI 詞彙卡</title>
+  <meta name="description" content="讓每個字在理解時，決定要「看」句子中哪些其他字。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="attention">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>注意力機制</h1>
+      <p class="en">Attention / Self-Attention</p>
+      <div class="meta">
+        <span class="badge">進階</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Attention 讓模型處理每個 token 時，算出它和其他 token 的關聯程度，再依權重匯集資訊。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>讀到「他把蘋果放進冰箱，因為它快壞了」裡的「它」時，你會自動回頭看「蘋果」。注意力機制就是讓模型學會這種「回頭看重點」的能力。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>每個 token 的向量被轉成三份：Query（我在找什麼）、Key（我有什麼）、Value（我的內容）。</li>
+          <li>用 Query 和所有 Key 做內積，得到關聯分數。</li>
+          <li>分數經過 softmax 變成加總為 1 的權重。</li>
+          <li>用這些權重把所有 Value 加權平均，得到新的、融合上下文的表示。</li>
+          <li>Transformer 會同時做很多組（multi-head），各自關注不同關係。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>論文《Attention Is All You Need》中的核心公式：</p>
+        <pre><code>Attention(Q, K, V) = softmax( Q·Kᵀ / √d ) · V</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>注意力權重就是模型「真正的理由」。 <strong>其實：</strong>權重可以幫助觀察，但不等於完整的決策解釋。</li>
+          <li><strong>誤解：</strong>Attention 只在文字模型裡出現。 <strong>其實：</strong>Stable Diffusion 的 U-Net 也用 cross-attention 讓文字提示影響圖像。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

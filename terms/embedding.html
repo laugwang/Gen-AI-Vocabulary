@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>嵌入向量 · GenAI 詞彙卡</title>
+  <meta name="description" content="把文字或圖片變成一串數字，意思相近的東西距離也相近。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="embedding">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>嵌入向量</h1>
+      <p class="en">Embedding</p>
+      <div class="meta">
+        <span class="badge">入門</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Embedding 是把文字、圖片等資料轉成一串固定長度的數字（向量），讓「意思相近」變成「距離相近」。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>想像一張超大的地圖：「貓」和「狗」被放在附近，「貓」和「冰箱」離得很遠。Embedding 就是每個詞在這張地圖上的座標，只是這張地圖有幾百甚至上千個維度。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>每個 token ID 先查表得到一個向量（這張表是訓練學出來的）。</li>
+          <li>模型層層運算後，可以得到整句話、整段文章的向量。</li>
+          <li>用餘弦相似度（cosine similarity）比較兩個向量有多接近。</li>
+          <li>相似度高 → 意思相近，可用於搜尋、分群、推薦。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>經典的例子是向量的加減法能保留語意關係：</p>
+        <pre><code>vec("國王") - vec("男人") + vec("女人") ≈ vec("女王")</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>每個維度都代表一個人看得懂的意義。 <strong>其實：</strong>大多數維度是混在一起的特徵，單看一個維度通常沒有明確意義。</li>
+          <li><strong>誤解：</strong>Embedding 只能用在文字。 <strong>其實：</strong>圖片、聲音、商品都可以有 embedding，CLIP 甚至把圖和文放在同一個空間。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

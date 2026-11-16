@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>檢索增強生成 · GenAI 詞彙卡</title>
+  <meta name="description" content="先查資料、再讓模型根據查到的內容回答，降低幻覺。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="rag">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>檢索增強生成</h1>
+      <p class="en">Retrieval-Augmented Generation (RAG)</p>
+      <div class="meta">
+        <span class="badge">入門</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>RAG 是在模型回答前，先從外部資料庫找出相關段落放進 prompt，讓模型「有所根據」地回答。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>閉卷考試 vs. 開書考試。一般 LLM 是閉卷，只能憑記憶；RAG 讓模型變成開書考，先翻到相關頁面再作答。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>把文件切成段落（chunk），每段算出 embedding 存進向量資料庫。</li>
+          <li>使用者提問時，把問題也轉成 embedding。</li>
+          <li>找出最相似的前 k 段（例如 k = 3）。</li>
+          <li>把這些段落和問題一起組成 prompt 交給 LLM。</li>
+          <li>LLM 根據提供的段落回答，並可以附上出處。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>一個 RAG 的 prompt 長這樣：</p>
+        <pre><code>請只根據以下資料回答問題，若資料中沒有答案，請回答「資料中沒有提到」。
+
+[資料 1] 本課程期末報告佔 40%……
+[資料 2] 作業遲交可在隔天 16:00 前補交……
+
+問題：作業可以遲交嗎？</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>用了 RAG 就不會有幻覺。 <strong>其實：</strong>檢索到錯的段落、或模型沒遵守指示時，仍會答錯。</li>
+          <li><strong>誤解：</strong>RAG 會讓模型「學會」新知識。 <strong>其實：</strong>模型參數沒有改變，只是當下多看了資料；要改變模型本身需要微調。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

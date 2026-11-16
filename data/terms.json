@@ -1,0 +1,109 @@
+[
+  {
+    "slug": "tokenization",
+    "term": "斷詞與 Token",
+    "en": "Tokenization",
+    "category": "basic",
+    "level": "入門",
+    "summary": "把文字切成模型看得懂的小單位，再轉成數字編號。",
+    "related": [
+      "embedding",
+      "temperature"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "embedding",
+    "term": "嵌入向量",
+    "en": "Embedding",
+    "category": "basic",
+    "level": "入門",
+    "summary": "把文字或圖片變成一串數字，意思相近的東西距離也相近。",
+    "related": [
+      "tokenization",
+      "attention",
+      "rag"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "hallucination",
+    "term": "幻覺",
+    "en": "Hallucination",
+    "category": "basic",
+    "level": "入門",
+    "summary": "模型很有自信地說出錯誤或不存在的內容。",
+    "related": [
+      "rag",
+      "temperature"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "attention",
+    "term": "注意力機制",
+    "en": "Attention / Self-Attention",
+    "category": "text",
+    "level": "進階",
+    "summary": "讓每個字在理解時，決定要「看」句子中哪些其他字。",
+    "related": [
+      "embedding",
+      "tokenization",
+      "temperature"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "temperature",
+    "term": "溫度",
+    "en": "Temperature (Sampling)",
+    "category": "text",
+    "level": "入門",
+    "summary": "控制生成時的隨機程度：低溫穩定保守，高溫多變有創意。",
+    "related": [
+      "tokenization",
+      "hallucination"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "diffusion-model",
+    "term": "擴散模型",
+    "en": "Diffusion Model",
+    "category": "image",
+    "level": "進階",
+    "summary": "學會一步步把雜訊「去噪」成清晰圖片的生成模型。",
+    "related": [
+      "attention",
+      "embedding",
+      "lora"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "rag",
+    "term": "檢索增強生成",
+    "en": "Retrieval-Augmented Generation (RAG)",
+    "category": "apply",
+    "level": "入門",
+    "summary": "先查資料、再讓模型根據查到的內容回答，降低幻覺。",
+    "related": [
+      "embedding",
+      "hallucination"
+    ],
+    "updated": "2026-11-16"
+  },
+  {
+    "slug": "lora",
+    "term": "低秩適應微調",
+    "en": "LoRA (Low-Rank Adaptation)",
+    "category": "apply",
+    "level": "進階",
+    "summary": "只訓練一小組額外參數，就能讓大模型學會新風格或新任務。",
+    "related": [
+      "diffusion-model",
+      "rag"
+    ],
+    "updated": "2026-11-16"
+  }
+]

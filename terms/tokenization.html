@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>斷詞與 Token · GenAI 詞彙卡</title>
+  <meta name="description" content="把文字切成模型看得懂的小單位，再轉成數字編號。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="tokenization">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>斷詞與 Token</h1>
+      <p class="en">Tokenization</p>
+      <div class="meta">
+        <span class="badge">入門</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Tokenization 是把一段文字切成一個個「token」（字、詞或詞的片段），並轉成整數編號，讓模型能處理文字。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>就像把一篇文章剪成拼圖片，每一片都有自己的編號。模型不讀「字」，只讀這些編號；常見的詞是一整片，罕見的詞會被拆成好幾片。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>準備一份詞彙表（vocabulary），通常有數萬到十幾萬個 token。</li>
+          <li>用 BPE 等演算法，把文字盡量切成詞彙表裡最長的片段。</li>
+          <li>每個片段查表換成一個整數 ID，例如 <code>"Hello" → 9906</code>。</li>
+          <li>模型輸出時也是一次吐出一個 token ID，再查表轉回文字。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>同一句話，中文和英文切出來的 token 數量常常不同，這也是 API 計費、上下文長度限制都以 token 計算的原因。</p>
+        <pre><code>"I love AI"   → ["I", " love", " AI"]          # 3 個 token
+"我喜歡人工智慧" → ["我", "喜歡", "人工", "智慧"]   # 依詞彙表而定</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>一個 token 就是一個字。 <strong>其實：</strong>token 可能是一個字、一個詞，或半個英文單字，取決於詞彙表。</li>
+          <li><strong>誤解：</strong>token 越少越好。 <strong>其實：</strong>詞彙表太大會讓模型變大、罕見 token 學不好，是一種取捨。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>

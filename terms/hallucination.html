@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>幻覺 · GenAI 詞彙卡</title>
+  <meta name="description" content="模型很有自信地說出錯誤或不存在的內容。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-slug="hallucination">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="../index.html">全部詞彙</a>
+        <a href="../about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="crumbs"><a href="../index.html">首頁</a> / <span id="cat-badge">分類</span></nav>
+
+    <header class="term-head">
+      <h1>幻覺</h1>
+      <p class="en">Hallucination</p>
+      <div class="meta">
+        <span class="badge">入門</span>
+        <span class="badge level" id="updated"></span>
+      </div>
+    </header>
+
+    <article class="term">
+      <section id="definition">
+        <h2>一句話定義</h2>
+        <p>Hallucination 是指生成式模型產生看起來合理、語氣篤定，但其實錯誤或憑空捏造的內容。</p>
+      </section>
+
+      <section id="analogy">
+        <h2>白話比喻</h2>
+        <p>像是考試時遇到不會的題目，卻還是寫得頭頭是道的同學。語言模型的目標是「接出最像樣的下一個字」，而不是「確認事實」，所以不知道時也會順順地編下去。</p>
+      </section>
+
+      <section id="how-it-works">
+        <h2>運作原理</h2>
+        <ol>
+          <li>模型根據訓練資料學到「什麼樣的文字常一起出現」。</li>
+          <li>遇到訓練資料少、或需要精確事實（日期、引用、數字）的問題時，模型仍會依機率生成。</li>
+          <li>生成結果「語法通順、格式正確」，但內容沒有被任何來源檢查。</li>
+          <li>於是出現假的論文標題、錯的年份、不存在的函式等。</li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>小例子</h2>
+        <p>請模型「列出三篇關於某冷門主題的論文並附上 DOI」，常會得到格式完美、但查不到的論文。</p>
+        <pre><code>降低幻覺的常見做法：
+1. 用 RAG 提供可靠資料，並要求「只根據資料回答」
+2. 允許模型回答「我不知道」
+3. 要求附上出處，並由人查證</code></pre>
+      </section>
+
+      <section id="misconceptions">
+        <h2>常見誤解</h2>
+        <ul>
+          <li><strong>誤解：</strong>幻覺是模型壞掉了。 <strong>其實：</strong>這是生成機制的自然結果，所有語言模型都會有，只是程度不同。</li>
+          <li><strong>誤解：</strong>把 temperature 調成 0 就不會有幻覺。 <strong>其實：</strong>溫度低只是讓輸出更穩定，模型仍可能穩定地說錯。</li>
+        </ul>
+      </section>
+
+      <section id="related">
+        <h2>相關詞彙</h2>
+        <ul class="related-list"></ul>
+      </section>
+
+      <nav class="pager" id="pager"></nav>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="../about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script src="../assets/term.js"></script>
+</body>
+</html>
