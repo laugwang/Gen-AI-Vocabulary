@@ -37,10 +37,21 @@
         <tr><td>小例子</td><td>一個具體例子，可附程式碼或 prompt</td></tr>
         <tr><td>常見誤解</td><td>2–3 條「誤解 → 其實」</td></tr>
         <tr><td>相關詞彙</td><td>依 <code>terms.json</code> 自動產生，不手寫</td></tr>
+        <tr><td>參考資料</td><td>依 <code>terms.json</code> 的 <code>sources</code> 自動產生：原始論文、官方文件或維基百科</td></tr>
       </tbody>
     </table>
 
-    <h2>新增一張詞彙卡的 5 個步驟</h2>
+    <h2>在搜尋框直接請 AI 新增</h2>
+    <p>在首頁搜尋框輸入關鍵字（例如「影格」），下拉選單會出現：</p>
+    <ul>
+      <li><strong>已收錄</strong>：直接點進詞彙卡。</li>
+      <li><strong>＋ 請 AI 新增</strong>：來自 <code>data/candidates.json</code> 的公認術語（例如「影格差分 Frame Differencing」）。</li>
+      <li><strong>＋ 請 AI 查證並新增「…」</strong>：任意關鍵字，AI 會先查證。</li>
+    </ul>
+    <p>點下去會在 GitHub 開一個 issue，GitHub Actions 啟動 Claude 依照 <code>CLAUDE.md</code> 撰寫詞彙卡、跑 <code>check.py</code>、提交並重新部署網站，完成後在 issue 回覆連結。</p>
+    <p class="note">防幻覺規則：AI 必須以 WebFetch 實際開啟至少一個權威來源（原始論文、官方文件、教科書或維基百科）確認術語存在且定義正確，來源會列在卡片的「參考資料」。查不到可靠來源、非公認術語或與本站主題無關的請求，一律不新增，並在 issue 中說明原因。</p>
+
+    <h2>手動新增一張詞彙卡的 5 個步驟</h2>
     <ol class="steps">
       <li><strong>決定 slug</strong>：英文術語轉 kebab-case，例如 <code>diffusion-model</code>。</li>
       <li><strong>複製範本</strong>：<code>cp terms/_template.html terms/&lt;slug&gt;.html</code>，替換所有 <code>{{…}}</code>。</li>
@@ -59,6 +70,7 @@
       <span class="badge cat-basic">基礎概念</span>
       <span class="badge cat-text">文字生成</span>
       <span class="badge cat-image">圖像生成</span>
+      <span class="badge cat-video">影片生成</span>
       <span class="badge cat-apply">應用與微調</span>
     </p>
   </main>

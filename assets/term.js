@@ -1,10 +1,11 @@
 // 詞彙頁：依 <body data-slug> 從 data/terms.json 自動產生
-//   1) 分類色  2) 「相關詞彙」區塊  3) 上一張 / 下一張
+//   1) 分類色  2) 「相關詞彙」區塊  3) 「參考資料」區塊（sources）  4) 上一張 / 下一張
 // 詞彙頁的 #related 區塊請保持空白，交給這支程式。
 const CATEGORIES = {
   basic: "基礎概念",
   text: "文字生成",
   image: "圖像生成",
+  video: "影片生成",
   apply: "應用與微調",
 };
 
@@ -36,6 +37,27 @@ async function init() {
   }
 
   const pager = document.getElementById("pager");
+  if (pager && (me.sources || []).length && !document.getElementById("references")) {
+    const sec = document.createElement("section");
+    sec.id = "references";
+    const h = document.createElement("h2");
+    h.textContent = "參考資料";
+    const ol = document.createElement("ol");
+    ol.className = "sources";
+    for (const url of me.sources) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = url;
+      a.textContent = url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      li.appendChild(a);
+      ol.appendChild(li);
+    }
+    sec.append(h, ol);
+    pager.before(sec);
+  }
+
   if (pager) {
     const prev = terms[i - 1];
     const next = terms[i + 1];

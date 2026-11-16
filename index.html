@@ -24,11 +24,14 @@
   <main class="wrap">
     <section class="hero">
       <h1>生成式 AI，一個詞一張卡</h1>
-      <p>上課聽到 token、attention、diffusion、RAG 卻一知半解？每張卡片都用「一句話定義 → 白話比喻 → 運作原理 → 小例子 → 常見誤解」帶你 3 分鐘看懂。</p>
+      <p>上課聽到 token、attention、diffusion、RAG 卻一知半解？每張卡片都用「一句話定義 → 白話比喻 → 運作原理 → 小例子 → 常見誤解 → 參考資料」帶你 3 分鐘看懂。搜尋不到的術語，可以直接請 AI 查證後新增。</p>
     </section>
 
     <div class="toolbar">
-      <input id="search" class="search" type="search" placeholder="搜尋詞彙，例如：RAG、溫度、擴散…" aria-label="搜尋詞彙">
+      <div class="search-box">
+        <input id="search" class="search" type="search" autocomplete="off" placeholder="搜尋詞彙，例如：RAG、影格、擴散…" aria-label="搜尋詞彙">
+        <ul id="suggest" class="suggest" hidden></ul>
+      </div>
       <div id="filters" class="filters" role="group" aria-label="依分類篩選"></div>
     </div>
     <p id="count" class="count"></p>

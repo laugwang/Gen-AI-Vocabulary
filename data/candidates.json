@@ -1,0 +1,197 @@
+[
+  {
+    "term": "影格差分",
+    "en": "Frame Differencing",
+    "category": "video",
+    "aliases": [
+      "幀差法",
+      "frame difference",
+      "影格相減"
+    ]
+  },
+  {
+    "term": "影格插值",
+    "en": "Video Frame Interpolation",
+    "category": "video",
+    "aliases": [
+      "插幀",
+      "補幀",
+      "frame interpolation"
+    ]
+  },
+  {
+    "term": "光流",
+    "en": "Optical Flow",
+    "category": "video",
+    "aliases": [
+      "optical flow"
+    ]
+  },
+  {
+    "term": "時間一致性",
+    "en": "Temporal Consistency",
+    "category": "video",
+    "aliases": [
+      "閃爍",
+      "flicker"
+    ]
+  },
+  {
+    "term": "關鍵影格",
+    "en": "Keyframe",
+    "category": "video",
+    "aliases": [
+      "key frame",
+      "關鍵幀"
+    ]
+  },
+  {
+    "term": "影片擴散模型",
+    "en": "Video Diffusion Model",
+    "category": "video",
+    "aliases": [
+      "text-to-video",
+      "文生影片"
+    ]
+  },
+  {
+    "term": "Transformer",
+    "en": "Transformer",
+    "category": "basic",
+    "aliases": [
+      "變換器"
+    ]
+  },
+  {
+    "term": "微調",
+    "en": "Fine-tuning",
+    "category": "basic",
+    "aliases": [
+      "finetune"
+    ]
+  },
+  {
+    "term": "損失函數",
+    "en": "Loss Function",
+    "category": "basic",
+    "aliases": [
+      "loss"
+    ]
+  },
+  {
+    "term": "過擬合",
+    "en": "Overfitting",
+    "category": "basic",
+    "aliases": [
+      "過度擬合"
+    ]
+  },
+  {
+    "term": "Top-p 取樣",
+    "en": "Nucleus Sampling (Top-p)",
+    "category": "text",
+    "aliases": [
+      "top-p",
+      "核取樣"
+    ]
+  },
+  {
+    "term": "上下文視窗",
+    "en": "Context Window",
+    "category": "text",
+    "aliases": [
+      "context length",
+      "上下文長度"
+    ]
+  },
+  {
+    "term": "思維鏈",
+    "en": "Chain-of-Thought Prompting",
+    "category": "text",
+    "aliases": [
+      "CoT"
+    ]
+  },
+  {
+    "term": "無分類器引導",
+    "en": "Classifier-Free Guidance (CFG)",
+    "category": "image",
+    "aliases": [
+      "cfg",
+      "guidance scale"
+    ]
+  },
+  {
+    "term": "變分自編碼器",
+    "en": "Variational Autoencoder (VAE)",
+    "category": "image",
+    "aliases": [
+      "vae"
+    ]
+  },
+  {
+    "term": "CLIP",
+    "en": "Contrastive Language-Image Pre-training (CLIP)",
+    "category": "image",
+    "aliases": [
+      "對比式語言圖像預訓練"
+    ]
+  },
+  {
+    "term": "生成對抗網路",
+    "en": "Generative Adversarial Network (GAN)",
+    "category": "image",
+    "aliases": [
+      "gan"
+    ]
+  },
+  {
+    "term": "ControlNet",
+    "en": "ControlNet",
+    "category": "image",
+    "aliases": []
+  },
+  {
+    "term": "潛在空間",
+    "en": "Latent Space",
+    "category": "image",
+    "aliases": [
+      "latent"
+    ]
+  },
+  {
+    "term": "提示工程",
+    "en": "Prompt Engineering",
+    "category": "apply",
+    "aliases": [
+      "prompt"
+    ]
+  },
+  {
+    "term": "AI 代理",
+    "en": "AI Agent",
+    "category": "apply",
+    "aliases": [
+      "agent",
+      "智慧代理"
+    ]
+  },
+  {
+    "term": "人類回饋強化學習",
+    "en": "Reinforcement Learning from Human Feedback (RLHF)",
+    "category": "apply",
+    "aliases": [
+      "rlhf"
+    ]
+  },
+  {
+    "term": "模型量化",
+    "en": "Quantization",
+    "category": "apply",
+    "aliases": [
+      "量化",
+      "int8",
+      "4-bit"
+    ]
+  }
+]

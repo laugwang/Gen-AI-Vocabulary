@@ -1,0 +1,96 @@
+name: AI add term
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: add-term
+  cancel-in-progress: false
+
+jobs:
+  add:
+    # 只處理帶 add-term 標籤、且由 repo 擁有者／協作者開的 issue（避免陌生人消耗 API 額度）
+    if: >-
+      contains(github.event.issue.labels.*.name, 'add-term') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.result.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Save request
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          BODY: ${{ github.event.issue.body }}
+        run: printf '# %s\n\n%s\n' "$TITLE" "$BODY" > .ai-request.md
+
+      - name: Ask Claude to verify and write the card
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "$(cat .github/ai-add-term-prompt.md)" \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(python3 scripts/check.py),Bash(cp terms/_template.html terms/*)" \
+            --max-turns 60
+
+      - name: Read result
+        id: result
+        run: |
+          if [ -f .ai-result.json ]; then
+            python3 -c "import json;d=json.load(open('.ai-result.json'));print('status='+d.get('status','ERROR'));print('slug='+d.get('slug',''))" >> "$GITHUB_OUTPUT"
+            python3 -c "import json;print(json.load(open('.ai-result.json')).get('message',''))" > .ai-message.txt
+          else
+            echo "status=ERROR" >> "$GITHUB_OUTPUT"
+            echo "AI 沒有產生結果檔。" > .ai-message.txt
+          fi
+
+      - name: Check and commit
+        if: steps.result.outputs.status == 'ADDED'
+        run: |
+          python3 scripts/check.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add terms data
+          git commit -m "feat(term): add ${{ steps.result.outputs.slug }}" -m "Closes #${{ github.event.issue.number }}"
+          git push origin HEAD:main
+
+      - name: Reply on issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATUS: ${{ steps.result.outputs.status }}
+          SLUG: ${{ steps.result.outputs.slug }}
+          N: ${{ github.event.issue.number }}
+        run: |
+          MSG="$(cat .ai-message.txt 2>/dev/null || echo '執行失敗，請查看 Actions 紀錄。')"
+          URL="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+          case "$STATUS" in
+            ADDED)     BODY="✅ 已新增：$URL/terms/$SLUG.html （約 1 分鐘後上線）"$'\n\n'"$MSG" ;;
+            DUPLICATE) BODY="ℹ️ 已收錄：$URL/terms/$SLUG.html"$'\n\n'"$MSG" ;;
+            REJECTED)  BODY="🚫 未新增（防幻覺規則）"$'\n\n'"$MSG" ;;
+            *)         BODY="⚠️ 處理失敗：$MSG"$'\n\n'"請確認 repo 的 Secrets 已設定 ANTHROPIC_API_KEY。" ;;
+          esac
+          gh issue comment "$N" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+          if [ "$STATUS" != "ERROR" ] && [ -n "$STATUS" ]; then gh issue close "$N" --repo "$GITHUB_REPOSITORY"; fi
+
+  deploy:
+    needs: add
+    if: needs.add.outputs.status == 'ADDED'
+    uses: ./.github/workflows/pages.yml

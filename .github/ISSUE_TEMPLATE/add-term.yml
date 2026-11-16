@@ -1,0 +1,25 @@
+name: 請 AI 新增詞彙卡
+description: 由 AI 查證後依 CLAUDE.md 新增一張詞彙卡（網站搜尋框會自動帶入）
+title: "新增術語："
+labels: ["add-term"]
+body:
+  - type: input
+    id: term
+    attributes:
+      label: 術語（中文或英文皆可）
+      placeholder: 影格差分
+    validations:
+      required: true
+  - type: input
+    id: en
+    attributes:
+      label: 英文名稱（可留空，AI 會查證）
+      placeholder: Frame Differencing
+  - type: input
+    id: category
+    attributes:
+      label: 分類（basic / text / image / video / apply，可留空）
+  - type: textarea
+    id: note
+    attributes:
+      label: 補充說明（可留空）

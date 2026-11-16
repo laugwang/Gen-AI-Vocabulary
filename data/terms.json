@@ -10,6 +10,10 @@
       "embedding",
       "temperature"
     ],
+    "sources": [
+      "https://arxiv.org/abs/1508.07909",
+      "https://huggingface.co/docs/transformers/tokenizer_summary"
+    ],
     "updated": "2026-11-16"
   },
   {
@@ -24,6 +28,10 @@
       "attention",
       "rag"
     ],
+    "sources": [
+      "https://arxiv.org/abs/1301.3781",
+      "https://en.wikipedia.org/wiki/Word_embedding"
+    ],
     "updated": "2026-11-16"
   },
   {
@@ -36,6 +44,10 @@
     "related": [
       "rag",
       "temperature"
+    ],
+    "sources": [
+      "https://arxiv.org/abs/2202.03629",
+      "https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)"
     ],
     "updated": "2026-11-16"
   },
@@ -51,6 +63,10 @@
       "tokenization",
       "temperature"
     ],
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://en.wikipedia.org/wiki/Attention_(machine_learning)"
+    ],
     "updated": "2026-11-16"
   },
   {
@@ -63,6 +79,10 @@
     "related": [
       "tokenization",
       "hallucination"
+    ],
+    "sources": [
+      "https://arxiv.org/abs/1904.09751",
+      "https://en.wikipedia.org/wiki/Softmax_function"
     ],
     "updated": "2026-11-16"
   },
@@ -78,6 +98,10 @@
       "embedding",
       "lora"
     ],
+    "sources": [
+      "https://arxiv.org/abs/2006.11239",
+      "https://arxiv.org/abs/2112.10752"
+    ],
     "updated": "2026-11-16"
   },
   {
@@ -91,6 +115,9 @@
       "embedding",
       "hallucination"
     ],
+    "sources": [
+      "https://arxiv.org/abs/2005.11401"
+    ],
     "updated": "2026-11-16"
   },
   {
@@ -103,6 +130,9 @@
     "related": [
       "diffusion-model",
       "rag"
+    ],
+    "sources": [
+      "https://arxiv.org/abs/2106.09685"
     ],
     "updated": "2026-11-16"
   }
