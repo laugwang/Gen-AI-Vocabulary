@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GenAI 詞彙卡</title>
+  <meta name="description" content="生成式 AI 術語小辭典：每個術語一張卡，3 分鐘看懂。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="index.html" aria-current="page">全部詞彙</a>
+        <a href="about.html">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>生成式 AI，一個詞一張卡</h1>
+      <p>上課聽到 token、attention、diffusion、RAG 卻一知半解？每張卡片都用「一句話定義 → 白話比喻 → 運作原理 → 小例子 → 常見誤解」帶你 3 分鐘看懂。</p>
+    </section>
+
+    <div class="toolbar">
+      <input id="search" class="search" type="search" placeholder="搜尋詞彙，例如：RAG、溫度、擴散…" aria-label="搜尋詞彙">
+      <div id="filters" class="filters" role="group" aria-label="依分類篩選"></div>
+    </div>
+    <p id="count" class="count"></p>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+  <script type="module" src="assets/main.js"></script>
+</body>
+</html>

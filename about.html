@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>關於 · GenAI 詞彙卡</title>
+  <meta name="description" content="GenAI 詞彙卡的專案說明與新增詞彙的規則。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">GenAI <span>詞彙卡</span></a>
+      <nav class="site-nav">
+        <a href="index.html">全部詞彙</a>
+        <a href="about.html" aria-current="page">關於 & 新增規則</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap prose">
+    <section class="hero">
+      <h1>關於這個網站</h1>
+      <p>GenAI 詞彙卡是一個「會一直長大」的生成式 AI 術語小辭典。每一張卡片的格式都由專案根目錄的 <code>CLAUDE.md</code> 規定，因此不論是人或 AI，都能用同一套方式快速新增內容。</p>
+    </section>
+
+    <h2>每張卡片的固定結構</h2>
+    <table>
+      <thead><tr><th>區塊</th><th>寫作規則</th></tr></thead>
+      <tbody>
+        <tr><td>一句話定義</td><td>1 句、60 字以內，不用術語解釋術語</td></tr>
+        <tr><td>白話比喻</td><td>用生活例子比喻，2–4 句</td></tr>
+        <tr><td>運作原理</td><td>3–5 個步驟的編號清單</td></tr>
+        <tr><td>小例子</td><td>一個具體例子，可附程式碼或 prompt</td></tr>
+        <tr><td>常見誤解</td><td>2–3 條「誤解 → 其實」</td></tr>
+        <tr><td>相關詞彙</td><td>依 <code>terms.json</code> 自動產生，不手寫</td></tr>
+      </tbody>
+    </table>
+
+    <h2>新增一張詞彙卡的 5 個步驟</h2>
+    <ol class="steps">
+      <li><strong>決定 slug</strong>：英文術語轉 kebab-case，例如 <code>diffusion-model</code>。</li>
+      <li><strong>複製範本</strong>：<code>cp terms/_template.html terms/&lt;slug&gt;.html</code>，替換所有 <code>{{…}}</code>。</li>
+      <li><strong>填寫六個區塊</strong>：順序與 id 固定，照上表的寫作規則。</li>
+      <li><strong>登記清單</strong>：在 <code>data/terms.json</code> 加入一筆，首頁與相關連結會自動更新。</li>
+      <li><strong>執行檢查</strong>：<code>python3 scripts/check.py</code> 全數通過才算完成。</li>
+    </ol>
+
+    <h2>給 AI 的一句話指令</h2>
+    <p>因為規則都寫在 <code>CLAUDE.md</code>，要新增內容時只需要對 AI 說：</p>
+    <pre><code>請依照 CLAUDE.md 新增一張「Prompt Engineering」的詞彙卡，分類 apply，並跑 check.py。</code></pre>
+    <p>AI 會自己找到範本、填寫格式、登記清單、跑檢查並用規定的格式 commit。</p>
+
+    <h2>分類</h2>
+    <p>
+      <span class="badge cat-basic">基礎概念</span>
+      <span class="badge cat-text">文字生成</span>
+      <span class="badge cat-image">圖像生成</span>
+      <span class="badge cat-apply">應用與微調</span>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">GenAI 詞彙卡 · 依照 <a href="about.html">CLAUDE.md</a> 規則由人與 AI 共同維護</div>
+  </footer>
+</body>
+</html>
